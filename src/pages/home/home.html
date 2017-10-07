@@ -1,0 +1,138 @@
+<body>
+
+<ion-content id="header">
+
+      <button ion-button small icon-right style="width:80px; margin:10px 0 0 10px; position:fixed;" color="primary" (click)="goBack()">
+      Back
+      <ion-icon name="arrow-back"></ion-icon>
+      </button>
+
+      <div class="animated fadeInDown centerAlign" style="margin-top:20px">
+      <img src="assets/img/ahlogocircle.png" style="height:80px; width:80px; margin-top:px; box-shadow: 1px 1px  rgba(0,0,0,0.6); border-radius:50%; padding:-2px -2px -2px -2px">
+      <span style="text-shadow: 0.5px 0.5px rgba(0,0,0,0.5);"><br>Anees Hussain <br>
+      Flashcards</span>
+      </div>
+
+</ion-content>
+
+<div id="breakLine"></div>
+
+<ion-content id="mainContent">
+
+  <div class="centerAlign" style="margin-top: 20px;" *ngIf="showLogIn">
+
+    <span>Enter Registered Email Address:</span>
+
+    <div style="margin-top: 50px;"></div>
+
+    <ion-label stacked style="color:white">Email Address</ion-label>
+    <input class="inputStoF" id="email_address" [style.width]="inputWidth2" type="email" [(ngModel)]="email_address">
+
+    <button ion-button round style="width:100px; margin-top: 20px;" color="secondary" (click)="checkEmail()">
+    Submit
+    </button>
+  </div>
+
+  <div *ngIf = "showFirstRadio">
+
+    <div class="centerAlign heading animated fadeInDownBig">
+      <span>Choose Your List</span>
+    </div>
+
+    <!--<div style="float:left; border-bottom: solid grey 1px; margin-left: 10px;" [style.width]="inputWidth">
+    <ion-label stacked>Username</ion-label>
+    <ion-input type="text" value="123"></ion-input>
+    </div>
+    <div style="float:right; margin-right: 10px;" [style.width]="inputWidth">
+    <ion-label stacked>Password</ion-label>
+    <ion-input type="password" style="border-bottom: solid grey 1px">123</ion-input>
+  </div>-->
+    <ion-list radio-group class="radioList">
+      <ion-item class="radioItem" *ngFor = "let item of listsArr" >
+        <ion-label class="animated fadeInLeft"> {{item.text}} </ion-label>
+        <ion-radio class="animated fadeInRight" color="dark" checked={{item.checked}} (click)="setSelectedList(item)"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <div class="centerAlign animated fadeInUpBig">
+    <button ion-button icon-right style="width:150px" color="secondary" (click)="checkListExists()">
+    Next
+    <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+    </div>
+
+  </div>
+
+  <div *ngIf = "showSecondRadio">
+
+    <div class="centerAlign heading animated fadeInDownBig">
+      <span>How Many Words?</span>
+    </div>
+
+    <div style="float: left; margin-left: 10px"  [style.display]="inputDisplay"  class="animated fadeInLeft">
+    <ion-label stacked style="color:white">Start</ion-label>
+    <input class="inputStoF" id="startNum" [style.width]="inputWidth" type="tel" [(ngModel)]="startNumber">
+    </div>
+
+    <div style="float: right; margin-right:10px"  [style.display]="inputDisplay" class="animated fadeInRight">
+    <ion-label stacked style="color:white">Finish</ion-label>
+    <input class="inputStoF" id="finishNum" [style.width]="inputWidth" type="tel" [(ngModel)]="finishNumber">
+    </div>
+
+    <ion-list radio-group class="radioList">
+
+      <ion-item class="radioItem">
+        <ion-label class="animated fadeInLeft"> From x to y (list size: {{listSize}}) </ion-label>
+        <ion-radio class="animated fadeInRight" color="dark" (click)="setSelectedNum('no')"></ion-radio>
+      </ion-item>
+
+      <ion-item class="radioItem" *ngFor = "let item of nums" >
+        <ion-label class="animated fadeInLeft"> {{item.text}} Random Words! </ion-label>
+        <ion-radio class="animated fadeInRight" color="dark" checked={{item.checked}} (click)="setSelectedNum(item.text)"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <div class="centerAlign animated fadeInUpBig">
+    <button ion-button icon-right style="width:150px" color="secondary" (click)="getTheWords()">
+    Start!
+    <ion-icon name="book"></ion-icon>
+    </button>
+    </div>
+
+
+
+  </div>
+
+  <div *ngIf = "showCards">
+
+    <ion-card [style.height] = "cardHeight" id="flashCard" class="animated zoomIn" (click)="cardTap()">
+      <!--<br><br><br><br><br><br><br><br><br><br><br><h1 style="font-weight:bold">HI THERE!!!</h1>-->
+      <div style="text-align:left !important;margin-left:15px;font-size: 90%">
+        {{progress}}
+      </div>
+      <div *ngIf = "showingWord" class="whiteText">
+        <h1 style="font-size:160%; text-decoration:underline; color:white;" [style.margin-top] = "wordMargin" class="animated fadeIn">Word:</h1>
+        <h1 class="animated fadeInDown" style="font-size:160%; color:white;" [style.margin-top] = "wordMargin">{{showing.word}}</h1>
+      </div>
+
+      <div *ngIf = "!showingWord" class="whiteText">
+        <h1 style="font-size:160%; text-decoration:underline; color:white;" [style.margin-top] = "wordMargin" class="">Word:</h1>
+        <h1 class="" style="font-size:160%; color: white;" [style.margin-top] = "wordMargin">{{showing.word}}</h1>
+        <div class="animated fadeInUp">
+          <h1 class="animated fadeInDown" *ngIf="hasExtraInfo" style="font-size:120%; color: white;" [style.margin-top] = "wordMargin">{{showing.pos}}</h1>
+
+          <h1 style="font-size:160%;text-decoration:underline; color: white;" [style.margin-top] = "wordMargin" class="animated fadeIn">Meaning:</h1>
+          <h1 class="animated fadeInDown" style="font-size:120%; color: white;" [style.margin-top] = "wordMargin">{{showing.meaning}}</h1>
+          <div *ngIf = "hasExtraInfo">
+            <h1 style="font-size:160%; text-decoration:underline; color: white;" [style.margin-top] = "wordMargin" class="animated fadeIn">Example Usage:</h1>
+            <h1 class="animated fadeInDown" style="font-size:120%; color: white;" [style.margin-top] = "wordMargin">{{showing.example}}</h1>
+          </div>
+        </div>
+      </div>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>
+</body>
