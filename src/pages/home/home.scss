@@ -2,26 +2,6 @@ page-home {
 
 }
 
-body {
-  text-shadow: 0.5px 0.5px rgba(0,0,0,0.5);
-}
-
-.centerAlign {
-  text-align:center;
-}
-
-#header {
-  font-weight:bold;
-  font-size:140%;
-  height:155px;
-  background-color:#32DB64 !important
-}
-
-#breakLine {
-  height:2px;
-  background-color:black
-}
-
 
 .inputStoF:focus {
   border-bottom:solid black 1px !important
@@ -32,10 +12,6 @@ body {
   padding: 5px;
   border-bottom: solid white 1px;
   background-color:#28A1D8
-}
-
-#mainContent {
-  background-color: #28A1D8
 }
 
 .heading {

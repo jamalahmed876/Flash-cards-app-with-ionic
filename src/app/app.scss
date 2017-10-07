@@ -14,3 +14,35 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+body {
+  text-shadow: 0.5px 0.5px rgba(0,0,0,0.5);
+}
+
+#backButton {
+  z-index: 2;
+  height:35px;
+  width:80px;
+  margin:10px 0 0 10px;
+  position:fixed;
+}
+
+.centerAlign {
+  text-align:center;
+}
+
+#header {
+  font-weight:bold;
+  font-size:140%;
+  height:155px;
+  background-color:#32DB64 !important
+}
+
+#breakLine {
+  height:2px;
+  background-color:black
+}
+
+#mainContent {
+  background-color: #28A1D8
+}

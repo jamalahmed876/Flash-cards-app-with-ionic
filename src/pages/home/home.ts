@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {CardPage} from '../card/card';
 
 
 
@@ -47,7 +48,7 @@ export class HomePage {
     this.inputWidth = this.platform.width() / 2 - 30;
     this.inputWidth = this.inputWidth as string;
     this.inputWidth = this.inputWidth + "px";
-    this.cardHeight = this.platform.height() - 177;
+    this.cardHeight = this.platform.height() - 157 - 20;
     this.halfHeight = this.cardHeight / 2 - 50;
     this.cardHeight = this.cardHeight as string;
     this.halfHeight = this.halfHeight as string;
@@ -190,6 +191,17 @@ export class HomePage {
     this.currIndex = 0;
     this.showing = this.wordsToShow[0];
     this.makeProgressString();
+    this.navCtrl.push(CardPage, {
+      cardHeight: this.cardHeight,
+      wordsToShow: this.wordsToShow,
+      numwords: this.numwords,
+      progress: this.progress,
+      wordMargin: this.wordMargin,
+      hasExtraInfo: this.hasExtraInfo,
+      selectedNum: this.selectedNum,
+      startNumber: this.startNumber,
+      finishNumber: this.finishNumber
+    }, {animate: false});
   }
 
   getTheWords() {

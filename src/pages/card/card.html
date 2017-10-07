@@ -1,0 +1,55 @@
+<body>
+
+  <ion-content id="header">
+
+        <button ion-button small icon-right id="backButton" color="primary" (click)="goBack()">
+        Back
+        <ion-icon name="arrow-back"></ion-icon>
+        </button>
+
+        <div class="centerAlign" style="margin-top:20px">
+        <img src="assets/img/ahlogocircle.png" style="height:80px; width:80px; margin-top:px; box-shadow: 1px 1px  rgba(0,0,0,0.6); border-radius:50%; padding:-2px -2px -2px -2px">
+        <span style="text-shadow: 0.5px 0.5px rgba(0,0,0,0.5);"><br>Anees Hussain <br>
+        Flashcards</span>
+        </div>
+
+  </ion-content>
+
+  <div id="breakLine"></div>
+
+  <ion-content id="mainContent">
+
+    <div>
+
+      <ion-card [style.height] = "cardHeight" id="flashCard" class="animated zoomIn" (click)="cardTap()">
+        <!--<br><br><br><br><br><br><br><br><br><br><br><h1 style="font-weight:bold">HI THERE!!!</h1>-->
+        <div style="text-align:left !important;margin-left:15px;font-size: 90%">
+          {{progress}}
+        </div>
+        <div *ngIf = "showingWord" class="whiteText">
+          <h1 style="font-size:160%; text-decoration:underline; color:white;" [style.margin-top] = "wordMargin" class="animated fadeIn">Word:</h1>
+          <h1 class="animated fadeInDown" style="font-size:160%; color:white;" [style.margin-top] = "wordMargin">{{showing.word}}</h1>
+        </div>
+
+        <div *ngIf = "!showingWord" class="whiteText">
+          <h1 style="font-size:160%; text-decoration:underline; color:white;" [style.margin-top] = "wordMargin" class="">Word:</h1>
+          <h1 class="" style="font-size:160%; color: white;" [style.margin-top] = "wordMargin">{{showing.word}}</h1>
+          <div class="animated fadeInUp">
+            <h1 class="animated fadeInDown" *ngIf="hasExtraInfo" style="font-size:120%; color: white;" [style.margin-top] = "wordMargin">{{showing.pos}}</h1>
+
+            <h1 style="font-size:160%;text-decoration:underline; color: white;" [style.margin-top] = "wordMargin" class="animated fadeIn">Meaning:</h1>
+            <h1 class="animated fadeInDown" style="font-size:120%; color: white;" [style.margin-top] = "wordMargin">{{showing.meaning}}</h1>
+            <div *ngIf = "hasExtraInfo">
+              <h1 style="font-size:160%; text-decoration:underline; color: white;" [style.margin-top] = "wordMargin" class="animated fadeIn">Example Usage:</h1>
+              <h1 class="animated fadeInDown" style="font-size:120%; color: white;" [style.margin-top] = "wordMargin">{{showing.example}}</h1>
+            </div>
+          </div>
+        </div>
+
+      </ion-card>
+
+    </div>
+
+  </ion-content>
+
+</body>
