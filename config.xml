@@ -80,6 +80,7 @@
     </platform>
     <allow-navigation href="http://192.168.56.1:8100" />
     <allow-navigation href="http://147.8.27.64:8100" />
+    <allow-navigation href="http://147.8.28.101:8100" />
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-dbcopy" spec="git+https://github.com/an-rahulpandey/cordova-plugin-dbcopy.git" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />

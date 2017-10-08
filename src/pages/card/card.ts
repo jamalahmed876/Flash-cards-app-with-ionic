@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home'
@@ -11,7 +11,6 @@ import { HomePage } from '../home/home'
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-card',
   templateUrl: 'card.html',
@@ -31,7 +30,7 @@ export class CardPage {
   startNumber: string = "";
   finishNumber: string = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public sqlite: SQLite, public alertcntrl: AlertController) {
+  constructor(public platform: Platform, public navCtrl: NavController, public navParams: NavParams, public sqlite: SQLite, public alertcntrl: AlertController) {
     this.cardHeight = this.navParams.get("cardHeight");
     this.wordsToShow = this.navParams.get("wordsToShow");
     this.showingWord = true;
@@ -44,6 +43,10 @@ export class CardPage {
     this.selectedNum = this.navParams.get("selectedNum");
     this.startNumber = this.navParams.get("startNumber");
     this.finishNumber = this.navParams.get("finishNumber");
+
+    platform.registerBackButtonAction(() => {
+      this.goBack();
+    });
   }
 
   showOKAlert (heading, message) {

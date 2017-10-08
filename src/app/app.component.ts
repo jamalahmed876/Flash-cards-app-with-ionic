@@ -21,6 +21,8 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
+      
+
 
       //screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
     });

@@ -85,6 +85,10 @@ export class HomePage {
     /*this.http.get("http://jamalahmed-com.stackstaging.com/fcapp/getdata.php?email=jamal@connect.hku.hk")
     .map(res => res.json())
     .subscribe(data => {alert(data)})*/
+
+    platform.registerBackButtonAction(() => {
+      this.goBack();
+    });
   }
 
   defaultNumAndList () {
