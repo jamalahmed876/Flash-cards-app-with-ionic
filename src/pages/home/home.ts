@@ -45,18 +45,34 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController, public platform: Platform, public sqlite: SQLite, public alertcntrl: AlertController, public storage: Storage, public http: Http) {
-    this.inputWidth = this.platform.width() / 2 - 30;
-    this.inputWidth = this.inputWidth as string;
-    this.inputWidth = this.inputWidth + "px";
-    this.cardHeight = this.platform.height() - 157 - 20;
-    this.halfHeight = this.cardHeight / 2 - 50;
-    this.cardHeight = this.cardHeight as string;
-    this.halfHeight = this.halfHeight as string;
-    this.cardHeight = this.cardHeight + "px";
-    this.halfHeight = this.halfHeight + "px";
-    this.wordMargin = "18px";
-    this.inputWidth2 = this.platform.width() - 50;
-    this.inputWidth2 = this.inputWidth2 + "px";
+    if(platform.isLandscape()) {
+      this.inputWidth = this.platform.height() / 2 - 30;
+      this.inputWidth = this.inputWidth as string;
+      this.inputWidth = this.inputWidth + "px";
+      this.cardHeight = this.platform.width() - 157 - 20 - 30;
+      this.halfHeight = this.cardHeight / 2 - 50;
+      this.cardHeight = this.cardHeight as string;
+      this.halfHeight = this.halfHeight as string;
+      this.cardHeight = this.cardHeight + "px";
+      this.halfHeight = this.halfHeight + "px";
+      this.wordMargin = "18px";
+      this.inputWidth2 = this.platform.height() - 50;
+      this.inputWidth2 = this.inputWidth2 + "px";
+    } else {
+      this.inputWidth = this.platform.width() / 2 - 30;
+      this.inputWidth = this.inputWidth as string;
+      this.inputWidth = this.inputWidth + "px";
+      this.cardHeight = this.platform.height() - 157 - 20;
+      this.halfHeight = this.cardHeight / 2 - 50;
+      this.cardHeight = this.cardHeight as string;
+      this.halfHeight = this.halfHeight as string;
+      this.cardHeight = this.cardHeight + "px";
+      this.halfHeight = this.halfHeight + "px";
+      this.wordMargin = "18px";
+      this.inputWidth2 = this.platform.width() - 50;
+      this.inputWidth2 = this.inputWidth2 + "px";
+    }
+
 
     this.nums = [];
     this.nums.push({text:"50", checked:"false"});
@@ -116,7 +132,7 @@ export class HomePage {
             if (this.showCards){
               this.showCards = false;
               let tout = setTimeout(()=>{this.showFirstRadio = true; this.defaultNumAndList();}, 100);
-            } else if(this.showFirstRadio) {
+            } else if(this.showFirstRadio || this.showLogIn) {
               this.platform.exitApp();
             }
           }
@@ -312,8 +328,7 @@ export class HomePage {
     } if (this.showSecondRadio) {
       this.showSecondRadio = false;
       let tout = setTimeout(()=>{this.showFirstRadio = true; this.defaultNumAndList();}, 100);
-
-    } if (this.showFirstRadio) {
+    } if (this.showFirstRadio || this.showLogIn) {
       this.showYNAlert('Want to exit?', 'Are you sure you want to exit the app?');
     }
   }

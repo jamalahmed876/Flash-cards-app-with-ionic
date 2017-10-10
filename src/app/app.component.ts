@@ -20,11 +20,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      //screenOrientation.lock('portrait');
 
-      
+      if(platform.isLandscape()) {
+        alert ("Please use in portait mode");
+      }
 
-
-      //screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+      //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     });
   }
 }
