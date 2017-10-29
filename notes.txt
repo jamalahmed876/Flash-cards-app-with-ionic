@@ -3,4 +3,3 @@ made in: Ionic CLI 3.9.2.
 features to be added:
 
 1. personalized lists.
-2. lock screen orientation to portrait.
